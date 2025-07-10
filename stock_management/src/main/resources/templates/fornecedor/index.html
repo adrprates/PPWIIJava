@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head :: head('Listar Fornecedor')"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/head :: header"></th:block>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">CNPJ</th>
+        <th scope="col">Endereço</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Deletar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="fornecedor : ${listFornecedores}">
+        <td th:text="${fornecedor.id}"></td>
+        <td th:text="${fornecedor.nome}"></td>
+        <td th:text="${fornecedor.cnpj}"></td>
+        <td th:text="${fornecedor.endereco}"></td>
+        <td th:text="${fornecedor.telefone}"></td>
+        <td>
+            <a th:href="@{/fornecedor/editar/{id}(id=${fornecedor.id})}">Editar</a>
+        </td>
+        <td>
+            <a th:href="@{/fornecedor/deletar/{id}(id=${fornecedor.id})}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="row">
+    <a class="btn btn-primary" th:href="@{/fornecedor/criar}">Cadastrar Fornecedor</a>
+</div>
+
+<th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+</html>
